@@ -1,0 +1,17 @@
+com/rentalx/ReactNativeFlipper.java
+ com.rentalx.ReactNativeFlipper
+ com.rentalx.ReactNativeFlipper$1
+ com.rentalx.ReactNativeFlipper$2
+ com.rentalx.ReactNativeFlipper$2$1
+com/rentalx/MainActivity.java
+ com.rentalx.MainActivity
+ com.rentalx.MainActivity$1
+com/rentalx/generated/BasePackageList.java
+ com.rentalx.generated.BasePackageList
+com/rentalx/BuildConfig.java
+ com.rentalx.BuildConfig
+com/rentalx/MainApplication.java
+ com.rentalx.MainApplication
+ com.rentalx.MainApplication$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
