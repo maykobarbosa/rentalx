@@ -13,6 +13,9 @@ import { Home } from './src/screens/Home';
 import { ThemeProvider } from 'styled-components';
 import theme from './src/styles/theme';
 import { ActivityIndicator } from 'react-native';
+import { CarDetails } from './src/components/CarDetails';
+import { Scheduling } from './src/screens/Scheduling';
+import { SchedulingDetails } from './src/components/SchedulingDetails';
 
 export default function App() {
 
@@ -34,7 +37,7 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <SchedulingDetails />
     </ThemeProvider>
   );
 }
