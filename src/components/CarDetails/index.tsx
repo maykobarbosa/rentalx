@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native'
 
 import { Accessory } from '../Accessory';
 import { BackButton } from '../BackButton';
@@ -13,10 +14,15 @@ import PeopleSvg from '../../assets/people.svg'
 
 import{About, Acessories, Brand, CarImages, Container, Content, Description, Details, Footer, Header, Name, Period, Price, Rent, } from './styles';
 import { Button } from '../Button';
-import { useTheme } from 'styled-components';
+
+
+
 
 export function CarDetails(){
-  const theme = useTheme()
+  const navigation = useNavigation()
+  function handleScheduling(){
+    navigation.navigate('Scheduling')
+  }
   return (
     <Container>
       <Header>
@@ -52,17 +58,12 @@ export function CarDetails(){
         </Acessories>
         
         <About>
-          isoauhfudh auisdh fiuasdhfiuashd uifashd iusahdf saudh sauid hfuisadhfsuiadhf asiudh fsauidhiua fhsauid hsaui dhfasiu hsauidh fasiudhf siaudh asiudh
+        Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
         </About>
-        <About>
-          isoauhfudh auisdh fiuasdhfiuashd uifashd iusahdf saudh sauid hfuisadhfsuiadhf asiudh fsauidhiua fhsauid hsaui dhfasiu hsauidh fasiudhf siaudh asiudh
-        </About>
-        <About>
-          isoauhfudh auisdh fiuasdhfiuashd uifashd iusahdf saudh sauid hfuisadhfsuiadhf asiudh fsauidhiua fhsauid hsaui dhfasiu hsauidh fasiudhf siaudh asiudh
-        </About>
+    
       </Content>   
       <Footer>
-        <Button title="Confirmar" />  
+        <Button title="Escolher período do aluguel" onPress={handleScheduling} />  
       </Footer>  
 
     </Container>

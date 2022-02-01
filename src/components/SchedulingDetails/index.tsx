@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/native'
 
 import { Accessory } from '../Accessory';
 import { BackButton } from '../BackButton';
@@ -18,6 +19,10 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 export function SchedulingDetails(){
   const theme = useTheme()
+  const navigation = useNavigation()
+  function handleSchedulingComplete(){
+    navigation.navigate('SchedulingComplete')
+  }
   return (
     <Container>
       <Header>
@@ -85,7 +90,7 @@ export function SchedulingDetails(){
 
       </Content>   
       <Footer>
-        <Button title="Alugar" color={theme.colors.success}/>  
+        <Button title="Alugar" color={theme.colors.success} onPress={handleSchedulingComplete} />  
       </Footer>  
 
     </Container>
