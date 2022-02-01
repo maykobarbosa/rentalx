@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize'
 import {useNavigation} from '@react-navigation/native'
@@ -12,23 +12,31 @@ import {
   HeaderContent,
   TotalCars
 } from './styles';
+import {api} from '../../services/api';
+import { CarDTO } from '../../dtos/CarDTO';
+import { Load } from '../../components/Load';
 
 export function Home(){
+  const [cars, setCars] = useState<CarDTO>([])
+  const [loading, setLoading] = useState(true)
   const navigation = useNavigation()
 
-  const carDataOne = {
-    brand: 'audi',
-    name: 'TT',
-    rent:{
-      period: 'AO dia',
-      price: 120,
-    }, 
-    thumbnail: 'data:image/jpeg;base64,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',
+  function handleCarDetails(car: CarDTO){
+    navigation.navigate('CarDetails', {car})
   }
-
-  function handleCarDetails(){
-    navigation.navigate('CarDetails')
-  }
+  useEffect(() => {
+    async function fechCars() {
+      try {
+        const response = await api.get('/cars')    
+        setCars(response.data)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fechCars() 
+  },[])
  
   return (
     <Container>
@@ -48,14 +56,15 @@ export function Home(){
           </TotalCars>
         </HeaderContent>
       </Header>
-      <CarsList 
-        data={[1,2,3,4,5,6,7,8,9]}
-        keyExtractor={item=> String(item)}
-        renderItem={({item})=> 
-          <Car data={carDataOne} onPress={handleCarDetails} />  
-        }
-      />
-      
+      { loading ? <Load />  : 
+        <CarsList 
+          data={cars}
+          keyExtractor={item=> item.id}
+          renderItem={({item})=> 
+            <Car data={item} onPress={() => handleCarDetails(item)} />  
+          }
+        />
+      }
     
       
     </Container>
