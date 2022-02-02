@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from '../screens/Home';
 import { CarDetails } from '../components/CarDetails';
 import { Scheduling } from '../screens/Scheduling';
-import { SchedulingDetails } from '../components/SchedulingDetails';
+import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { SchedulingComplete } from '../screens/SchedulingComplete';
 
 const {Navigator, Screen} = createNativeStackNavigator();

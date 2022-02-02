@@ -15,6 +15,7 @@ import PeopleSvg from '../../assets/people.svg'
 import{About, Accessories, Brand, CarImages, Container, Content, Description, Details, Footer, Header, Name, Period, Price, Rent, } from './styles';
 import { Button } from '../Button';
 import { CarDTO } from '../../dtos/CarDTO';
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
 
 interface Params {
@@ -27,7 +28,7 @@ export function CarDetails(){
   const {car } = route.params as Params
 
   function handleScheduling(){
-    navigation.navigate('Scheduling')
+    navigation.navigate('Scheduling', {car})
   }
 
   return (
@@ -59,7 +60,7 @@ export function CarDetails(){
               <Accessory 
                 key={accessory.type} 
                 name={accessory.name} 
-                icon={SpeedSvg} 
+                icon={getAccessoryIcon(accessory.type)} 
               />
             ))            
           }
