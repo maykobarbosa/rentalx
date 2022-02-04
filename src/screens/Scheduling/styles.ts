@@ -13,14 +13,14 @@ export const Container = styled.View`
 `;
 export const Header = styled.View`
   width: 100%;
-  height: ${RFValue(325)}px;
+  height: ${RFValue(300)}px;
 
   background-color: ${({theme}) => theme.colors.header};
 
   justify-content: flex-end;
-  padding:  25px;
-
-  padding-top: ${getStatusBarHeight() + 30}px;
+  padding: 25px;
+  margin-top: ${getStatusBarHeight() + 0}px;
+  
 `;
 
 export const Title = styled.Text`

@@ -14,7 +14,7 @@ import { CarDTO } from '../../dtos/CarDTO';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import { getPlatformDate } from '../../utils/getPlatformDate';
 import { api } from '../../services/api';
-import { Alert } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 
 interface RentalPeriod {
   start: string;
@@ -30,6 +30,7 @@ interface Params {
 
 export function SchedulingDetails(){
   const [rentalPeriod, setRentalPediod] = useState<RentalPeriod>({} as RentalPeriod) 
+  const [loading, setLoading] = useState(false)
 
   const theme = useTheme()
   const navigation = useNavigation()
@@ -38,18 +39,32 @@ export function SchedulingDetails(){
 
   const rentTotal = Number(car.rent.price * dates.length)
   async function handleSchedulingComplete(){
+    setLoading(true)
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`)
 
     const unavailable_dates = [
       ...schedulesByCar.data.unavailable_dates,
       ...dates
     ]
+    api.post('schedules_byuser',{
+      user_id: 1, 
+      car,
+      start: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+      end: format(getPlatformDate(new Date(dates[dates.length - 1 ])), 'dd/MM/yyyy')
+    })
+
+
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
       unavailable_dates
-    }).then(response => navigation.navigate('SchedulingComplete'))
-    .catch(() => Alert.alert('Não foi possível realizar o agendamento!'))
-
+    }).then(response => {
+      navigation.navigate('SchedulingComplete'
+    )})
+    .catch(() => {
+      setLoading(false)  
+      Alert.alert('Não foi possível realizar o agendamento!')
+    })
+    
   }
 
   useEffect(() => {
@@ -60,6 +75,11 @@ export function SchedulingDetails(){
   },[])
   return (
     <Container>
+      <StatusBar 
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <Header>
         <BackButton onPress={()=> {}} />
       </Header>
@@ -127,7 +147,7 @@ export function SchedulingDetails(){
 
       </Content>   
       <Footer>
-        <Button title="Alugar" color={theme.colors.success} onPress={handleSchedulingComplete} />  
+        <Button title="Alugar" color={theme.colors.success} onPress={handleSchedulingComplete}  loading={loading} />  
       </Footer>  
 
     </Container>

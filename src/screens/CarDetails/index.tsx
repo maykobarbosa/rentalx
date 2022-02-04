@@ -1,21 +1,14 @@
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native'
 
-import { Accessory } from '../Accessory';
-import { BackButton } from '../BackButton';
-import { ImageSlider } from '../ImageSlider';
-
-import SpeedSvg from '../../assets/speed.svg'
-import AccelerationSvg from '../../assets/acceleration.svg'
-import ForceSvg from '../../assets/force.svg'
-import GasolineSvg from '../../assets/gasoline.svg'
-import ExchangeSvg from '../../assets/exchange.svg'
-import PeopleSvg from '../../assets/people.svg'
-
-import{About, Accessories, Brand, CarImages, Container, Content, Description, Details, Footer, Header, Name, Period, Price, Rent, } from './styles';
-import { Button } from '../Button';
-import { CarDTO } from '../../dtos/CarDTO';
+import{About, Accessories, Brand, CarImages,Container, Content, Description, Details, Footer, Header, Name, Period, Price, Rent, } from './styles';
+import { Button } from '../../components/Button';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import { StatusBar } from 'react-native';
+import { BackButton } from '../../components/BackButton';
+import { ImageSlider } from '../../components/ImageSlider';
+import { Accessory } from '../../components/Accessory';
+import { CarDTO } from '../../dtos/CarDTO';
 
 
 interface Params {
@@ -33,6 +26,11 @@ export function CarDetails(){
 
   return (
     <Container>
+      <StatusBar 
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <Header>
         <BackButton  />
       </Header>

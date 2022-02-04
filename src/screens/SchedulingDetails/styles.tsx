@@ -13,7 +13,7 @@ export const Header = styled.View`
   align-items: center;
 
   position: absolute;
-  margin-top: ${getStatusBarHeight() + 18}px;
+  margin-top: ${getStatusBarHeight() + 8}px;
   margin-left: 24px;
   
 `;

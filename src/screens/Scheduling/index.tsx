@@ -33,14 +33,10 @@ export function Scheduling(){
   const {car } = route.params as Params
 
   function handleSchedulingDetails(){
-    if(!rentalPeriod.startFormatted || !rentalPeriod.endFormatted){
-      Alert.alert('Selecione o intervalo para alugar.')
-    }else{
       navigation.navigate('SchedulingDetails', {
-        car, 
-        dates: Object.keys(markedDates)
-      })
-    }
+      car, 
+      dates: Object.keys(markedDates)
+    })
   }
   const theme = useTheme()
 
@@ -68,7 +64,7 @@ export function Scheduling(){
   return (
     <Container>
       <StatusBar 
-        barStyle="light-content"
+        barStyle="dark-content"
         backgroundColor="transparent"
         translucent
       />
@@ -104,7 +100,11 @@ export function Scheduling(){
       </Content> 
 
       <Footer>
-        <Button title="Confirmar" onPress={handleSchedulingDetails}  />  
+        <Button 
+          title="Confirmar" 
+          onPress={handleSchedulingDetails} 
+          enabled={!!rentalPeriod.endFormatted}
+        />  
       </Footer>  
 
     </Container>
