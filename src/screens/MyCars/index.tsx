@@ -22,6 +22,7 @@ import { useTheme } from 'styled-components';
 import { Load } from '../../components/Load';
 import { Car } from '../../components/Car';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 interface CarProps{
   id: string;
@@ -78,7 +79,7 @@ export function MyCars(){
           <AppointmentsTitle>Agendamentos feitos </AppointmentsTitle>
           <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
         </Appointments>
-        { loading ? <Load />  : 
+        { loading ? <LoadAnimation />   : 
         <FlatList 
           data={cars}
           keyExtractor={item=> item.id}
