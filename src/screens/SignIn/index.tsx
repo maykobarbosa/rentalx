@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 import theme from '../../styles/theme';
 
 import {
@@ -24,7 +25,7 @@ export function SignIn(){
           uma experiência incrível.
         </SubTitle>
       </Header>
-
+      <Input />
       <Footer>
         <Button 
           title="Login"
