@@ -1,15 +1,17 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { KeyboardAvoidingView, StatusBar } from 'react-native';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { InputPassword } from '../../components/InputPassword';
 import theme from '../../styles/theme';
 
 import {
-  Container, Footer, Header, SubTitle, Title
+  Container, Footer, Form, Header, SubTitle, Title
 } from './styles';
 
 export function SignIn(){
   return (
+    <KeyboardAvoidingView>
     <Container>
       <StatusBar 
         barStyle='dark-content' 
@@ -25,7 +27,23 @@ export function SignIn(){
           uma experiência incrível.
         </SubTitle>
       </Header>
-      <Input />
+      
+     <Form>
+       <Input 
+        iconName="mail"
+        placeholder='E-mail'
+        keyboardType='email-address'
+        autoCorrect={false}
+        autoCapitalize="none"
+       />
+
+      <InputPassword
+        iconName="lock"
+        placeholder='Senha'
+        
+       />
+     </Form>
+
       <Footer>
         <Button 
           title="Login"
@@ -43,5 +61,7 @@ export function SignIn(){
         />
       </Footer>
     </Container>
+    </KeyboardAvoidingView>
+
   );
 }
