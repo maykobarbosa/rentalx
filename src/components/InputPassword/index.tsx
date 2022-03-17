@@ -12,7 +12,7 @@ interface Props extends TextInputProps{
 }
 
 export function InputPassword({
-  iconName, ...rest
+  iconName, value, ...rest
 }: Props){
   const [isPasswordVisible, setIsPasswordVisible] = useState(true)
 
@@ -22,26 +22,43 @@ export function InputPassword({
 
   }
 
+  const [isFocused, setIsFocused] = useState(false)
+  const [isFilled, setIsFilled] = useState(false)
+
+  function handleInputFocus(){
+    setIsFocused(true)
+  }
+
+  function handleInputBlur(){
+    setIsFocused(false)
+    setIsFilled(!!value)
+    
+  }
+
   return (
-    <Container  >
-      <IconContainer>
+    <Container >
+      <IconContainer 
+        isFocused={isFocused} >
         <Feather 
           name={iconName}
           size={24}
-          color={theme.colors.text_detail}
+          color={(isFocused || isFilled) ? theme.colors.main : theme.colors.text_detail}
         />
       </IconContainer>
       <InputText 
-        {...rest} 
+        isFocused={isFocused} 
         secureTextEntry={isPasswordVisible}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        {...rest} 
       />
       <BorderlessButton onPress={handlePasswordVisibilityChange}>
-        <IconContainer>
+        <IconContainer 
+        isFocused={isFocused} >
             <Feather 
-              name={isPasswordVisible ? 'eye' : 'eye-off'}
+              name={isPasswordVisible ? 'eye-off' : 'eye'}
               size={24}
-              color={theme.colors.text_detail}
-              
+              color={theme.colors.text_detail}              
             />
         </IconContainer>
       </BorderlessButton>      

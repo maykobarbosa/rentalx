@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native'
 
 
 interface Props extends BorderlessButtonProps{
-  color: String;
+  color?: String;
 }
 export function BackButton({color, ...rest}: Props){
 
