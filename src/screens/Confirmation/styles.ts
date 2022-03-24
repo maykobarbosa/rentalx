@@ -26,7 +26,7 @@ export const Title = styled.Text`
   color: ${({theme}) => theme.colors.shape};
   font-size: ${RFValue(30)}px;
 
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 
 export const Message = styled.Text`
