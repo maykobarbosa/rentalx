@@ -11,11 +11,13 @@ import {
   Container, Footer, Form, Header, SubTitle, Title
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 export function SignIn(){
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {signIn} = useAuth()
 
   async function handleSignIn(){
     try {
@@ -30,6 +32,7 @@ export function SignIn(){
       Alert.alert('Tudo certo')
 
      /// Fazer Login
+      signIn({email, password})
     } catch (error) {
       if(error instanceof Yup.ValidationError){
         Alert.alert('Opa', error.message)
